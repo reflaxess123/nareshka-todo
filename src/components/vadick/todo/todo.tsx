@@ -1,8 +1,10 @@
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Input } from '@/components/ui/input';
-import { Loader, Trash2 } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 import { useState } from 'react';
+import { Button } from '../../../components/ui/button';
+import { Checkbox } from '../../../components/ui/checkbox';
+import { Input } from '../../../components/ui/input';
+import { Loader } from '../Loader/Loader';
+import './todo.scss';
 
 export const Todo = () => {
   const [input, setInput] = useState<string>('');
@@ -51,7 +53,7 @@ export const Todo = () => {
     try {
       setIsLoading(true);
       const response = await fetch('https://jsonplaceholder.typicode.com/todos');
-      await sleep(5000);
+      await sleep(1000);
       const data = await response.json();
       const startIndex = loadedCount;
       const endIndex = startIndex + 10;
@@ -98,18 +100,19 @@ export const Todo = () => {
           Загрузить мок данные
         </Button>
       </section>
-      <section className="flex flex-col gap-2 items-center">
-        {isLoading && (
-          <div>
-            <Loader />
-          </div>
-        )}
-        {tasks.length > 0 && (
-          <>
-            <h2 className="text-2xl font-bold">Задачи</h2>
-            <ul className="flex flex-col gap-2 max-w-[250px]">
+      {isLoading && tasks.length === 0 && <Loader />}
+      {tasks.length > 0 && (
+        <>
+          <h2 className="text-2xl font-bold">Задачи</h2>
+          <div className="tasks-container">
+            {isLoading && (
+              <div className="loader-container visible">
+                <Loader />
+              </div>
+            )}
+            <ul className="task-list flex flex-col gap-2 max-w-[250px]">
               {tasks.map((task, index) => (
-                <li key={index} className="flex flex-row gap-2 items-center">
+                <li key={index} className="task-item flex flex-row gap-2 items-center">
                   <Checkbox
                     className="bg-white !p-0"
                     id={`task-${index}`}
@@ -128,9 +131,9 @@ export const Todo = () => {
                 </li>
               ))}
             </ul>
-          </>
-        )}
-      </section>
+          </div>
+        </>
+      )}
     </main>
   );
 };

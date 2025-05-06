@@ -1,23 +1,19 @@
-/* HTML: <div class="loader"></div> */
 .loader {
-  width: 50px;
-  aspect-ratio: 1;
-  box-shadow: 0 0 0 3px #fff inset;
+  width: 48px;
+  height: 48px;
+  border: 5px solid #fff;
+  border-bottom-color: #ff3d00;
   border-radius: 50%;
-  position: relative;
-  animation: l6 1.5s linear infinite;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
 }
-.loader:before {
-  content: '';
-  position: absolute;
-  top: 100%;
-  box-shadow: inherit;
-  width: 25px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-}
-@keyframes l6 {
-  to {
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
     transform: rotate(360deg);
   }
 }
