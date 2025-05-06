@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
-import { Todo } from '../components/vadick/todo/todo';
-import { Routes as RoutePaths } from '../constants/routes';
-import { Comments } from '../pages/Comments';
-import { Posts } from '../pages/Posts';
+import { Todo } from '@/pages/todo-page';
+import { Routes as RoutePaths } from './routes';
+import { Comments } from '@/pages/Comments';
+import { Posts } from '@/pages/Posts';
 
 export const router = [
   {
