@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Button } from '@/shared/ui/button';
 import { ThemeToggle } from '@/shared/ui/theme-toggle';
-import { RouterConfig, router } from './config/router';
+import { RouterConfig } from './config/router';
+import { router } from './config/routes';
 
 function App() {
   return (
